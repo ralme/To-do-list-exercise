@@ -1,7 +1,7 @@
 .button {
     width: 110px;
     height: 40px;
-    -unity-font-style: normal;
+    -unity-font-style: bold;
     font-size: 14px;
     background-color: rgba(203, 153, 126, 255);
     border-left-width: 2px;
@@ -13,6 +13,10 @@
     border-bottom-left-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+    border-left-color: rgba(0, 0, 0, 255);
+    border-right-color: rgba(0, 0, 0, 255);
+    border-top-color: rgba(0, 0, 0, 255);
+    border-bottom-color: rgba(0, 0, 0, 255);
 }
 
 .toggle {
@@ -20,4 +24,6 @@
     border-right-width: 40px;
     border-top-width: 1.5px;
     border-bottom-width: 1.5px;
+    font-size: 22px;
+    -unity-text-align: lower-left;
 }
