@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 
 public class UIcontroller : MonoBehaviour
 {
@@ -12,33 +13,46 @@ public class UIcontroller : MonoBehaviour
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         TextField inputText = root.Q<TextField>("inputText");
         Button addButton = root.Q<Button>("addButton");
-        Label outputText01 = root.Q<Label>("outputText01");
-        Label outputText02 = root.Q<Label>("outputText02");
-        Label outputText03 = root.Q<Label>("outputText03");
-        Label outputText04 = root.Q<Label>("outputText04");
-        Label outputText05 = root.Q<Label>("outputText05");
-        Label outputText06 = root.Q<Label>("outputText06");
-        Label outputText07 = root.Q<Label>("outputText07");
-        Label outputText08 = root.Q<Label>("outputText08");
-        Label outputText09 = root.Q<Label>("outputText09");
-        Label outputText10 = root.Q<Label>("outputText10");
+        VisualElement toggleContainer = root.Q<VisualElement>("toggleContainer");
+        VisualElement labelContainer = root.Q<VisualElement>("labelContainer");
+        VisualElement buttonContainer = root.Q<VisualElement>("buttonContainer");
+        //StyleSheet Stylesheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Stylesheet.uss");
+        //int count = 0;
 
-        addButton.clicked += () => SetValues(outputText01, inputText);
-        addButton.clicked += () => SetValues(outputText02, inputText);
-        addButton.clicked += () => SetValues(outputText03, inputText);
-        addButton.clicked += () => SetValues(outputText04, inputText);
-        addButton.clicked += () => SetValues(outputText05, inputText);
-        addButton.clicked += () => SetValues(outputText06, inputText);
-        addButton.clicked += () => SetValues(outputText07, inputText);
-        addButton.clicked += () => SetValues(outputText08, inputText);
-        addButton.clicked += () => SetValues(outputText09, inputText);
-        addButton.clicked += () => SetValues(outputText10, inputText);
+        //if (count < 10)
+        //{
+            addButton.clicked += () =>
+            {
+                Toggle listToggle = new Toggle();
+
+                Label listLabel = new Label();
+
+                Button deleteButton = new Button();
+                deleteButton.text = "Delete";
+                //deleteButton.styleSheets.Add(Stylesheet);
+
+                toggleContainer.Add(listToggle);
+                labelContainer.Add(listLabel);
+                buttonContainer.Add(deleteButton);
+                SetValues(listLabel, inputText);
+                //count++;
+
+                deleteButton.clicked += () =>
+                {
+                    toggleContainer.Remove(listToggle);
+                    labelContainer.Remove(listLabel);
+                    buttonContainer.Remove(deleteButton);
+                    //count--;
+                };
+            };
+        //}
 
     }
 
     public void SetValues(Label t2, TextField t1)
     {
         t2.text = t1.value;
+        t1.value = "";
     }
 
 }
